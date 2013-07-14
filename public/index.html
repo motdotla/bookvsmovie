@@ -124,10 +124,10 @@
           $(".book-rating").html(data.book.rating+"%");
 
           if (data.winner == "book") {
-            email_message = q + " book wins! " + "https://bookvsmovie.herokuapp.com/?q="+encodeURIComponent(q); 
+            email_message = q + " book wins! " + "https://bookvsmovie.herokuapp.com/?q="+encodeURI(q); 
             $(".greater-than-or-equal-to").html(">");
           } else {
-            email_message = q + " movie wins! " + "https://bookvsmovie.herokuapp.com/?q="+encodeURIComponent(q); 
+            email_message = q + " movie wins! " + "https://bookvsmovie.herokuapp.com/?q="+encodeURI(q); 
             $(".greater-than-or-equal-to").html("<");
           }
           showSearchResults();
