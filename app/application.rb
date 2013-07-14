@@ -19,6 +19,24 @@ class Application < Sinatra::Base
     File.read(File.join('public', 'javascripts', "jquery.js"))
   end
 
+  get "/email.json" do
+    api_url = "/api/mail.send.json?api_user=#{SENDGRID_USERNAME}"+
+              "&api_key=#{SENDGRID_PASSWORD}"+
+              "&to=#{params[:to]}"+
+              "&subject=#{SENDGRID_SUBJECT}"+
+              "&from=#{SENDGRID_FROM}"+
+              "&text=#{params[:text]}"
+    begin
+      result  = SENDGRID.get api_url
+      body    = result.body
+    rescue
+      {
+        success: false,
+        error: "There was an error. Try again"
+      }.to_json
+    end
+  end
+
   get "/search.json" do
     content_type 'application/json'
     
@@ -36,6 +54,10 @@ class Application < Sinatra::Base
       movie   = json["movies"][0]
       movie_rating = (movie["ratings"]["critics_score"]).to_i
 
+      puts "="*100
+      puts movie
+      puts "="*100
+
       # Winner
       winner  = "movie"
       winner  = "book" if book_rating > movie_rating
@@ -45,11 +67,13 @@ class Application < Sinatra::Base
         winner: winner,
         book: {
           image_url: book["image_url"],
-          rating: book_rating
+          rating: book_rating,
+          link: book["link"]
         },
         movie: {
           image_url: movie["posters"]["profile"],
-          rating: movie_rating 
+          rating: movie_rating, 
+          link: "https://www.rottentomatoes.com/m/#{movie["id"]}"
         }
       }.to_json
     rescue
