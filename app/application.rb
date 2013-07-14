@@ -13,8 +13,15 @@ class Application < Sinatra::Base
     content_type 'application/json'
 
     title   = params[:q]
+    
+    # Book
     client  = Goodreads.new
     book    = client.book_by_title title
+
+    # Movie
+    result  = ROTTENTOMATOES.get "/api/public/v1.0/movies.json?apikey=#{ROTTENTOMATOES_API_KEY}&q=#{title}&page_limit=1"
+    json    = JSON.parse(result.body)
+    movie   = json["movies"][0]
     
     {
       success: true,
@@ -22,7 +29,7 @@ class Application < Sinatra::Base
         image_url: book["image_url"]
       },
       movie: {
-        image_url: nil
+        image_url: movie["posters"]["profile"]
       }
     }.to_json
   end

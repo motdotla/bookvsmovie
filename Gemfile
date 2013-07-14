@@ -2,6 +2,7 @@ source "https://rubygems.org"
 ruby "1.9.3"
 
 gem 'dotenv'
+gem 'faraday'
 gem 'foreman'
 gem 'heroku'
 gem 'json'

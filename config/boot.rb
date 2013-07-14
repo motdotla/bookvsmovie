@@ -9,6 +9,7 @@ Dotenv.load
 
 require './config/constants'
 require './config/goodreads'
+require './config/rottentomatoes'
 
 Dir["./lib/*.rb"].each { |f| require f }
 
