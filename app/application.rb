@@ -19,6 +19,11 @@ class Application < Sinatra::Base
     File.read(File.join('public', 'javascripts', "jquery.js"))
   end
 
+  get "/javascripts/purl.js" do
+    content_type 'application/javascript'
+    File.read(File.join('public', 'javascripts', "purl.js"))
+  end
+
   get "/email.json" do
     api_url = "/api/mail.send.json?api_user=#{SENDGRID_USERNAME}"+
               "&api_key=#{SENDGRID_PASSWORD}"+
@@ -53,10 +58,6 @@ class Application < Sinatra::Base
       json    = JSON.parse(result.body)
       movie   = json["movies"][0]
       movie_rating = (movie["ratings"]["critics_score"]).to_i
-
-      puts "="*100
-      puts movie
-      puts "="*100
 
       # Winner
       winner  = "movie"
