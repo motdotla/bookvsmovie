@@ -35,7 +35,7 @@
           <input type="text" id="search" />
       </div>
       <div class="one-third.column">  
-          <button type="submit">Go!</button>
+          <button id="submit-form-btn" type="submit">Go!</button>
         </div>
     </form> 
   </div>
@@ -46,7 +46,7 @@
       <h3>Book:</h3>
       <p>This is where the book shows</p>
 <!-- book image --> 
-      <img src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
+      <img class="book" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
 <!-- book rating --> 
       <h2>82%</h2>
     </div>
@@ -54,7 +54,7 @@
       <h3>Movie</h3>
       <p>This is where the movie shows</p>
 <!-- movie image -->
-      <img src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
+      <img class="movie" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
 <!-- movie rating --> 
       <h2>82%</h2>
     </div>
@@ -65,5 +65,22 @@
 
   </div>
 
+  <script src='/javascripts/jquery.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    $("#submit-form-btn").click(function(e) {
+      e.preventDefault();
+
+      var q = $("#search").val();
+
+      $.get('/search.json?q='+q, function(data) {
+        if (data.success) {
+          $("img.movie").attr("src", data.movie.image_url);
+          $("img.book").attr("src", data.book.image_url);
+        } else {
+          alert(data.message);
+        }
+      });
+    }); 
+  </script>
 </body>
 </html>
