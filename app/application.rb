@@ -28,19 +28,23 @@ class Application < Sinatra::Base
       # Book
       client  = Goodreads.new
       book    = client.book_by_title title
+      book_rating = ((book.average_rating.to_f / 5.0) * 100).to_i
 
       # Movie
       result  = ROTTENTOMATOES.get "/api/public/v1.0/movies.json?apikey=#{ROTTENTOMATOES_API_KEY}&q=#{title}&page_limit=1"
       json    = JSON.parse(result.body)
       movie   = json["movies"][0]
-      
+      movie_rating = (movie["ratings"]["critics_score"]).to_i
+
       {
         success: true,
         book: {
-          image_url: book["image_url"]
+          image_url: book["image_url"],
+          rating: book_rating
         },
         movie: {
-          image_url: movie["posters"]["profile"]
+          image_url: movie["posters"]["profile"],
+          rating: movie_rating 
         }
       }.to_json
     rescue
