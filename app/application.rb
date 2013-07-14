@@ -6,6 +6,6 @@ class Application < Sinatra::Base
   end
  
   get "/" do
-    "hello world!"
+    File.read(File.join('public', 'index.html'))
   end
 end
