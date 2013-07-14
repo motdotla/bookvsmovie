@@ -43,12 +43,12 @@
 <!-- Hide these results until first search is performed --> 
 
     <div class="one-third column">
-      <h3>Book:</h3>
+      <h3>Book: <span class="greater-than-or-equal-to">></span></h3>
       <p>This is where the book shows</p>
 <!-- book image --> 
       <img class="book" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
 <!-- book rating --> 
-      <h2>82%</h2>
+<h2><span class="book-rating">82</span>%</h2>
     </div>
     <div class="one-third column">
       <h3>Movie</h3>
@@ -56,7 +56,7 @@
 <!-- movie image -->
       <img class="movie" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
 <!-- movie rating --> 
-      <h2>82%</h2>
+<h2><span class="movie-rating">82</span>%</h2>
     </div>
     <div class="one-third column">
       <h3>Soundtrack?</h3>
@@ -76,6 +76,14 @@
         if (data.success) {
           $("img.movie").attr("src", data.movie.image_url);
           $("img.book").attr("src", data.book.image_url);
+          $(".movie-rating").html(data.movie.rating);
+          $(".book-rating").html(data.book.rating);
+
+          if (data.winner == "book") {
+            $(".greater-than-or-equal-to").html(">");
+          } else {
+            $(".greater-than-or-equal-to").html("<");
+          }
         } else {
           alert(data.message);
         }

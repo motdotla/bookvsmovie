@@ -36,8 +36,13 @@ class Application < Sinatra::Base
       movie   = json["movies"][0]
       movie_rating = (movie["ratings"]["critics_score"]).to_i
 
+      # Winner
+      winner  = "movie"
+      winner  = "book" if book_rating > movie_rating
+
       {
         success: true,
+        winner: winner,
         book: {
           image_url: book["image_url"],
           rating: book_rating
