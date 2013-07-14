@@ -74,7 +74,7 @@
           <h4>send this scientific proof:</h4>
           <h2>email it</h2>
             <input type="text" id="email" style="width: 280px;" placeholder="you@email.com" type="text"/>
-          <button class="submit-form-btn" id="submit-form-btn" type="submit">send</button>
+          <button class="submit-form-btn" id="submit-email-btn" type="submit">send</button>
         </form> 
       </div> 
 
@@ -106,6 +106,8 @@
   <script src='/javascripts/jquery.js' type='text/javascript'></script>
   <script src='/javascripts/purl.js' type='text/javascript'></script>
   <script type='text/javascript'>
+    var email_message;
+
     function showSearchResults() {
       $(".search-results").removeClass("hidden");
       $(".initial-message").addClass("hidden");
@@ -120,11 +122,12 @@
           $("img.book").attr("src", data.book.image_url);
           $(".movie-rating").html(data.movie.rating+"%");
           $(".book-rating").html(data.book.rating+"%");
-          var email_message = "Movie title and just the link."
 
           if (data.winner == "book") {
+            email_message = q + " book wins! " + "https://bookvsmovie.herokuapp.com/?q="+encodeURIComponent(q); 
             $(".greater-than-or-equal-to").html(">");
           } else {
+            email_message = q + " movie wins! " + "https://bookvsmovie.herokuapp.com/?q="+encodeURIComponent(q); 
             $(".greater-than-or-equal-to").html("<");
           }
           showSearchResults();
@@ -133,6 +136,16 @@
           alert(data.message);
         }
       });
+    }
+
+    function email() {
+      var email = $("#email").val();
+
+      if (email) {
+        $.get('/email.json?to='+email+'&text='+email_message, function(data) {
+          console.log(data);
+        });
+      }
     }
 
     var url = $.url(window.location.href);
@@ -148,6 +161,11 @@
       search();
 
     }); 
+
+    $("#submit-email-btn").click(function(e) {
+      e.preventDefault();
+      email();
+    });
   </script>
 
 </body>
