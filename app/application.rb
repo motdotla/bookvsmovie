@@ -9,6 +9,11 @@ class Application < Sinatra::Base
     File.read(File.join('public', 'index.html'))
   end
 
+  get "/stylesheets/:path" do
+    content_type 'text/css'
+    File.read(File.join('public', 'stylesheets', params[:path]))
+  end
+
   get "/search.json" do
     content_type 'application/json'
 
