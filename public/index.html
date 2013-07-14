@@ -143,11 +143,7 @@
 
       if (email) {
         $.get('/email.json?to='+email+'&text='+email_message, function(data) {
-          if (data.success) {
-            alert("Email is on its way");
-          } else {
-            alert("There was an error. Try again");
-          }
+          alert("Email is on its way");
         });
       }
     }
