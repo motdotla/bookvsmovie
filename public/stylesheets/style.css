@@ -1,0 +1,164 @@
+
+html, body{
+    margin    : 0;
+    padding   : 0;
+    border    : none;
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+#wrapper{
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    background: #fff;
+  overflow: hidden; 
+}
+
+#header{
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  height: 333px;
+  width: 100%;
+  background-color: #a0d5be;
+}
+
+#container{
+    width: 960px;
+    padding-bottom: 30px;
+    display: block;
+    margin: 0 auto;
+}
+
+#search-container{
+  width: 960px;
+  margin: 0 auto;
+}
+
+h1{
+  font-size: 70px;
+  line-height: 22px;
+  padding-left: 50px;
+  font-weight: 300;
+}
+
+h2{
+  font-size: 64px;
+  font-weight: 300;
+  margin: 0;
+  line-height: normal;
+}
+
+h3{
+  font-size: 36px;
+  line-height: normal;
+  font-weight: 300;
+}
+h4{ 
+  font-size:30px;
+  font-weight:300;
+  line-height: normal;
+  margin: 0;
+  color: #555;
+}
+h5{ 
+  font-size:20px;
+  font-weight:300;
+  line-height: normal;
+  margin: 0;
+  color: #555;
+}
+h6, a{ 
+  font-size:16px;
+  font-weight:300;
+  line-height: normal;
+  margin: 0;
+  color: #555;
+  text-align: center;
+}
+input{ 
+  height: 60px; 
+  font-size: 32px;
+  margin-top:15px;
+}
+
+input .search{ 
+  width: 80%;
+}
+input .email{ 
+  width: 200px;
+  background-color: #fff;
+}
+
+img{ margin-right:15px;}
+
+#col_left 
+{ 
+  float: left; 
+  width: 400px; 
+  margin: 0 5px 0 0; 
+} 
+#col_mid 
+{ 
+  float: left; 
+  width: 60px; 
+  margin: 0; 
+} 
+#col_right 
+{ 
+  float: right;
+  width: 420px; 
+  margin: 0 5px 0 0; 
+  text-align: left;
+} 
+
+.submit-form-btn {
+  background-color:#363a4d;
+  border:0;
+  display:inline-block;
+  color:#fff;
+  font-weight:700;
+  font-size:25px;
+  font-weight:bold;
+  padding:17px 20px;
+  text-decoration:none;
+}
+.gtlt {
+  font-size: 120px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.submit-form-btn:hover {
+  background-color:#515151;
+}
+.thick{ font-weight: 400;}
+.thicker{ font-weight: 700;}
+.thickest{ font-weight: 900;}
+
+hr{ 
+  border-top: 1px dashed #ccc;
+  border-bottom: 0; border-left: 0; border-right:0;
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 90%;
+}
+
+.center { display:block; margin:0 auto }
+.alignleft { float:left }
+.alignright { float:right }
+
+.book-rating, .movie-rating {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.green {color: #209e4d;}
+.red {color: #cf3e05;}

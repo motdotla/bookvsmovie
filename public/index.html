@@ -1,73 +1,116 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-
   <meta charset="utf-8">
   <title>Book vs Movie</title>
-  <meta name="description" content="">
+  <meta name="description" content="What's better, the book or the movie?">
   <meta name="author" content="">
+  
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,900' rel='stylesheet' type='text/css'>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="stylesheets/base.css">
-  <link rel="stylesheet" href="stylesheets/skeleton.css">
-  <link rel="stylesheet" href="stylesheets/layout.css">
-
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
 
 </head>
 <body>
+<div id="wrapper">
+  <div id="header">
+    <h1 style="padding-top:30px;">What's better,</h1>
+    <h1 style="margin-left:15px;">the <span class="thick">book</span> or the <span class="thick">movie</span>?</h1>
 
-  <div class="container">
-    <div class="one.column">
-      <h1 class="remove-bottom" style="margin-top: 40px; text-align:center;">Book vs Movie</h1>
-      <hr />
+<!-- Search Form -->
+    <div id="search-container">
+      <form action="">
+          <input style="width: 80%;" type="text" id="search" placeholder="enter a book or movie title" type="text"/>
+        <button class="submit-form-btn" id="submit-form-btn" type="submit">go</button>
+      </form> 
+    </div>
+<!-- //Search -->
 
-    <form action="">
-      <div class="two-thirds.column"> 
-          <label for="search">Search</label>
-          <input type="text" id="search" />
+  </div>
+  
+  <div id="container">  
+<!-- Initial message: hide when results are shown --> 
+    <div class="initial-message">
+      <p><h3>find out which one is better,<br/>
+        <span class="thicker">based on science.</span> </h3>
+      </p> 
+    </div>
+
+<!--// Initial message -->
+
+<!-- Search Results -->
+    <div class="search-results hidden">
+<!-- Header: the book < > the movie -->
+      <div id="col_left"><h2 style="padding-top:40px; text-align:center;">the book</h2></div> 
+      <div id="col_mid"><span class="gtlt thickest">&gt;</span></div> 
+      <div id="col_right"><h2 style="padding-top:40px; text-align:center; padding-right: 100px;">the movie</h2></div>
+
+      <div style="clear: both"></div> 
+
+  <!-- The Book -->
+      <div id="col_left">
+        <img class="book" src="placeholder.jpg" width="180px" max-height:"250px" align="left">
+        <span class="book-rating">90%</span> 
+        <br />
+        <h5>of readers liked this book.</h5> 
+      </div> 
+
+      <div id="col_mid">&nbsp;</div> 
+
+  <!-- The Movie --> 
+      <div id="col_right">
+        <img class="movie" src="placeholder.jpg" width="180px" max-height:"250px" align="left">
+        <span class="movie-rating">90%</span> 
+        <br />
+        <h5>of viewers liked this movie.</h5> 
       </div>
-      <div class="one-third.column">  
-          <button id="submit-form-btn" type="submit">Go!</button>
-        </div>
-    </form> 
+
+      <div style="clear: both; padding:10px;"></div> 
+      <hr />
+      <div style="clear: both; padding:10px;"></div> 
+
+  <!-- SendGrid! -->
+      <div id="col_left" style="padding-top:20px;">
+        <form action="">
+          <h4>send this scientific proof:</h4>
+          <h2>email it</h2>
+            <input type="text" id="email" style="width: 280px;" placeholder="you@email.com" type="text"/>
+          <button class="submit-form-btn" id="submit-form-btn" type="submit">send</button>
+        </form> 
+      </div> 
+
+      <div id="col_mid">&nbsp;</div> 
+
+  <!-- Spotify! --> 
+      <div id="col_right" style="padding-top:20px;">
+        <h4>listen to the movie's</h4>
+        <h2>soundtrack</h2>
+        <iframe src="https://embed.spotify.com/?uri=spotify:album:0ogV7CBV00ONXAVx4tm0gk" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+    </div>
+
+    <div style="clear: both; padding: 20px;"></div> 
+
+    <hr />
+
+      <p><h6>Made at 
+        <a href="http://hollywoodhackday.com">#HHD13</a> with these APIs: 
+        <a href="http://hhttp://developer.rottentomatoes.com">Rotten Tomatoes</a>
+        (by <a href="http://developer.mashery.com">Mashery</a>), 
+        <a href="http://goodreads.com/api">GoodReads</a>, 
+        <a href="http://sendgrid.com/developers">SendGrid</a>, and 
+        <a href="http://developer.spotify.com">Spotify</a></h6></p>
+
   </div>
-
-<!-- Hide these results until first search is performed --> 
-
-    <div class="one-third column">
-      <h3>Book: <span class="greater-than-or-equal-to">></span></h3>
-      <p>This is where the book shows</p>
-<!-- book image --> 
-      <img class="book" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
-<!-- book rating --> 
-<h2><span class="book-rating">82</span>%</h2>
-    </div>
-    <div class="one-third column">
-      <h3>Movie</h3>
-      <p>This is where the movie shows</p>
-<!-- movie image -->
-      <img class="movie" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
-<!-- movie rating --> 
-<h2><span class="movie-rating">82</span>%</h2>
-    </div>
-    <div class="one-third column">
-      <h3>Soundtrack?</h3>
-      <p>Music could show here. If not, we can delete</p>
-    </div>
-
-  </div>
+</div> 
 
   <script src='/javascripts/jquery.js' type='text/javascript'></script>
   <script src='/javascripts/purl.js' type='text/javascript'></script>
   <script type='text/javascript'>
+    function showSearchResults() {
+      $(".search-results").removeClass("hidden");
+      $(".initial-message").addClass("hidden");
+    }
+
     function search() {
       var q = $("#search").val();
 
@@ -75,8 +118,8 @@
         if (data.success) {
           $("img.movie").attr("src", data.movie.image_url);
           $("img.book").attr("src", data.book.image_url);
-          $(".movie-rating").html(data.movie.rating);
-          $(".book-rating").html(data.book.rating);
+          $(".movie-rating").html(data.movie.rating+"%");
+          $(".book-rating").html(data.book.rating+"%");
           var email_message = "Movie title and just the link."
 
           if (data.winner == "book") {
@@ -84,6 +127,8 @@
           } else {
             $(".greater-than-or-equal-to").html("<");
           }
+          showSearchResults();
+
         } else {
           alert(data.message);
         }
@@ -104,5 +149,6 @@
 
     }); 
   </script>
+
 </body>
 </html>

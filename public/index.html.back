@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8">
+  <title>Book vs Movie</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="stylesheets/base.css">
+  <link rel="stylesheet" href="stylesheets/skeleton.css">
+  <link rel="stylesheet" href="stylesheets/layout.css">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="one.column">
+      <h1 class="remove-bottom" style="margin-top: 40px; text-align:center;">Book vs Movie</h1>
+      <hr />
+
+    <form action="">
+      <div class="two-thirds.column"> 
+          <label for="search">Search</label>
+          <input type="text" id="search" />
+      </div>
+      <div class="one-third.column">  
+          <button id="submit-form-btn" type="submit">Go!</button>
+        </div>
+    </form> 
+  </div>
+
+<!-- Hide these results until first search is performed --> 
+
+    <div class="one-third column">
+      <h3>Book: <span class="greater-than-or-equal-to">></span></h3>
+      <p>This is where the book shows</p>
+<!-- book image --> 
+      <img class="book" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
+<!-- book rating --> 
+<h2><span class="book-rating">82</span>%</h2>
+    </div>
+    <div class="one-third column">
+      <h3>Movie</h3>
+      <p>This is where the movie shows</p>
+<!-- movie image -->
+      <img class="movie" src="http://content7.flixster.com/movie/10/91/12/10911201_det.jpg" width="180px" align="left">
+<!-- movie rating --> 
+<h2><span class="movie-rating">82</span>%</h2>
+    </div>
+    <div class="one-third column">
+      <h3>Soundtrack?</h3>
+      <p>Music could show here. If not, we can delete</p>
+    </div>
+
+  </div>
+
+  <script src='/javascripts/jquery.js' type='text/javascript'></script>
+  <script src='/javascripts/purl.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    function search() {
+      var q = $("#search").val();
+
+      $.get('/search.json?q='+q, function(data) {
+        if (data.success) {
+          $("img.movie").attr("src", data.movie.image_url);
+          $("img.book").attr("src", data.book.image_url);
+          $(".movie-rating").html(data.movie.rating);
+          $(".book-rating").html(data.book.rating);
+          var email_message = "Movie title and just the link."
+
+          if (data.winner == "book") {
+            $(".greater-than-or-equal-to").html(">");
+          } else {
+            $(".greater-than-or-equal-to").html("<");
+          }
+        } else {
+          alert(data.message);
+        }
+      });
+    }
+
+    var url = $.url(window.location.href);
+    var q   = url.param('q');
+
+    if (q) {
+      $("#search").val(q);
+      search();
+    } 
+
+    $("#submit-form-btn").click(function(e) {
+      e.preventDefault();
+      search();
+
+    }); 
+  </script>
+</body>
+</html>
